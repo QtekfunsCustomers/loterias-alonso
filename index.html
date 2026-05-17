@@ -451,12 +451,8 @@ a,abbr,acronym,address,applet,b,big,blockquote,body,center,cite,code,dd,del,dfn,
     var mobileMenu = document.getElementById('la-mobile-menu');
 
     function checkScroll() {
-      if (true) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-    });
+      navbar.classList.add('scrolled');
+    }
 
     burger.addEventListener('click', function() {
       var open = mobileMenu.classList.toggle('open');
