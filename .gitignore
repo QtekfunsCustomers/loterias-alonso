@@ -1,0 +1,8 @@
+*.bak
+wp-includes/
+wp-admin/
+wp-json/
+feed/
+*.php
+*.xml
+xmlrpc.html

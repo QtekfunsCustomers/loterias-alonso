@@ -1,0 +1,10 @@
+				@font-face {
+					font-family: 'magno';
+					src: url('1372magno.woff2') format('woff2'),
+						url('1372magno.woff') format('woff');
+					  font-display: auto;
+				}
+
+				.magno{font-family: 'magno' !important;}
+
+		
