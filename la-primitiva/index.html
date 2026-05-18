@@ -27,7 +27,6 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 /*# sourceURL=wp-img-auto-sizes-contain-inline-css */
 </style>
 <link rel='stylesheet' id='uaf_client_css-css' href='../wp-content/uploads/useanyfont/uafdfc6.css?ver=1764377298' type='text/css' media='all' />
-<link rel='stylesheet' id='cmplz-general-css' href='../wp-content/plugins/complianz-gdpr/assets/css/cookieblocker.minbad7.css?ver=1776728749' type='text/css' media='all' />
 <style id='divi-style-inline-inline-css' type='text/css'>
 /*!
 Theme Name: Divi
@@ -684,10 +683,38 @@ a,abbr,acronym,address,applet,b,big,blockquote,body,center,cite,code,dd,del,dfn,
 
 	</div>
 
-	
-
-<!-- Consent Management powered by Complianz | GDPR/CCPA Cookie Consent https://wordpress.org/plugins/complianz-gdpr -->
-<div id="cmplz-cookiebanner-container"><div class="cmplz-cookiebanner cmplz-hidden banner-1 bottom-minimal optin cmplz-bottom cmplz-categories-type-view-preferences" aria-modal="true" data-nosnippet="true" role="dialog" aria-live="polite" aria-labelledby="cmplz-header-1-optin" aria-describedby="cmplz-message-1-optin">
-	<div class="cmplz-header">
-		<div class="cmplz-logo"></div>
-		<div class="cmplz-title" id="cmplz-header-1-optin">
+<!-- Cookie Consent Banner -->
+<style>
+#la-cookie-bar{position:fixed;bottom:0;left:0;width:100%;background:#192989;color:#fff;font-family:'Open Sans',Arial,sans-serif;font-size:14px;z-index:999999;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:14px 24px;box-sizing:border-box;border-top:3px solid #efb810}
+#la-cookie-bar p{margin:0;padding:0;flex:1;min-width:200px}
+#la-cookie-bar a{color:#efb810;text-decoration:underline}
+.la-cb-actions{display:flex;gap:10px;flex-shrink:0}
+#la-cookie-bar button{font-family:'Open Sans',Arial,sans-serif;font-size:13px;font-weight:700;padding:8px 20px;border:0;border-radius:3px;cursor:pointer;transition:opacity .2s}
+#la-cookie-bar button:hover{opacity:.85}
+#la-cb-accept{background:#efb810;color:#192989}
+#la-cb-reject{background:transparent;color:#fff;outline:1px solid rgba(255,255,255,.5)}
+@media(max-width:600px){#la-cookie-bar{flex-direction:column;align-items:flex-start}.la-cb-actions{width:100%;justify-content:flex-end}}
+</style>
+<div id="la-cookie-bar" role="dialog" aria-label="Aviso de cookies" style="display:none">
+  <p>Usamos cookies propias para mejorar tu experiencia de navegaci&oacute;n. Al hacer clic en &laquo;Aceptar&raquo; consientes su uso. Consulta nuestra <a href="../politica-de-cookies/index.html">pol&iacute;tica de cookies</a>.</p>
+  <div class="la-cb-actions">
+    <button id="la-cb-reject">Rechazar</button>
+    <button id="la-cb-accept">Aceptar</button>
+  </div>
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('la-cookie-bar');
+  if(!localStorage.getItem('la_cookie_consent'))bar.style.display='flex';
+  document.getElementById('la-cb-accept').onclick=function(){
+    localStorage.setItem('la_cookie_consent','accepted');
+    bar.style.display='none';
+  };
+  document.getElementById('la-cb-reject').onclick=function(){
+    localStorage.setItem('la_cookie_consent','rejected');
+    bar.style.display='none';
+  };
+})();
+</script>
+</body>
+</html>
