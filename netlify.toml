@@ -1,0 +1,99 @@
+# Netlify configuration for loteriasalonso.com
+
+# ─────────────────────────────────────────────
+# Build settings (static site — nothing to build)
+# ─────────────────────────────────────────────
+[build]
+  publish = "."
+
+# ─────────────────────────────────────────────
+# Redirects
+# ─────────────────────────────────────────────
+
+# www → non-www (canonical)
+[[redirects]]
+  from   = "https://www.loteriasalonso.com/*"
+  to     = "https://loteriasalonso.com/:splat"
+  status = 301
+  force  = true
+
+# Clean URLs: /page/ → /page/index.html (Netlify handles this by default,
+# but explicit rule avoids ambiguity when DNS switches)
+[[redirects]]
+  from   = "/resultados"
+  to     = "/resultados/"
+  status = 301
+
+# ─────────────────────────────────────────────
+# Security & cache headers
+# ─────────────────────────────────────────────
+
+# HTML pages — no cache, security headers
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    X-Frame-Options            = "SAMEORIGIN"
+    X-Content-Type-Options     = "nosniff"
+    Referrer-Policy            = "strict-origin-when-cross-origin"
+    Permissions-Policy         = "camera=(), microphone=(), geolocation=()"
+    Content-Security-Policy    = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; frame-src https://www.google.com; connect-src 'self' https://formspree.io; form-action https://formspree.io;"
+    Cache-Control              = "no-cache, must-revalidate"
+
+# Catch-all for subdirectory index pages
+[[headers]]
+  for = "/*/index.html"
+  [headers.values]
+    X-Frame-Options            = "SAMEORIGIN"
+    X-Content-Type-Options     = "nosniff"
+    Referrer-Policy            = "strict-origin-when-cross-origin"
+    Permissions-Policy         = "camera=(), microphone=(), geolocation=()"
+    Cache-Control              = "no-cache, must-revalidate"
+
+# CSS — long-term cache (content-hashed filenames in wp-content)
+[[headers]]
+  for = "/wp-content/**/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Fonts — long-term cache
+[[headers]]
+  for = "/wp-content/**/*.woff2"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/wp-content/**/*.woff"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/wp-content/**/*.ttf"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Images — 1 year cache
+[[headers]]
+  for = "/wp-content/**/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/wp-content/**/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/wp-content/**/*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/wp-content/**/*.gif"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# JS files
+[[headers]]
+  for = "/wp-content/**/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
